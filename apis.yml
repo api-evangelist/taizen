@@ -1,7 +1,18 @@
 aid: taizen
 name: Taizen
-description: Taizen is a company surfaced as a portfolio company of techstars and added to the API Evangelist
-  network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+description: >-
+  Taizen is a managed agentic AI platform for go-to-market teams that automates
+  win/loss analysis and competitive intelligence. Its Signals agent continuously
+  monitors recorded sales calls (via Gong, Fireflies, tl;dv, and Granola), CRM
+  closed-lost deal data, competitor pricing pages and product changelogs, press
+  releases, and G2 reviews to detect recurring objections and material competitor
+  moves, then auto-generates battlecards, rep-training drills, and AI-roleplay
+  scenarios. Taizen also books and runs AI-led interviews with lost buyers and
+  pushes real-time competitive updates to teams via Slack, with delivery through
+  a Monday-morning weekly digest and instant alerts. Backed by Techstars, the
+  company emphasizes built-in governance and no model-vendor lock-in, and open
+  sources supporting retrieval and GTM tooling on GitHub. This is a customer-facing
+  SaaS product with no public API surface at the time of enrichment.
 url: https://raw.githubusercontent.com/api-evangelist/taizen/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -9,11 +20,31 @@ x-backed-by:
 - techstars
 x-tier: stub
 x-tier-reason: portfolio-lead
+accessModel:
+  pricing: unknown
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Unknown
+  confidence: low
+  source: []
+  generated: '2026-07-22'
+  method: derived
+image: https://usetaizen.com/assets/taizen.svg
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-21'
 tags:
 - Company
+- Win-Loss Analysis
+- Competitive Intelligence
+- Sales Enablement
+- Revenue Intelligence
+- GTM
+- AI Agents
+- Battlecards
+- Sales
 apis: []
 maintainers:
 - FN: Kin Lane
@@ -23,3 +54,22 @@ maintainers:
 common:
 - type: Website
   url: https://usetaizen.com/
+- type: SignUp
+  url: https://usetaizen.com/book
+- type: TermsOfService
+  url: https://usetaizen.com/terms
+- type: PrivacyPolicy
+  url: https://usetaizen.com/privacy
+- type: GitHubOrganization
+  url: https://github.com/taizen-ai
+- type: TrustCenter
+  url: security/taizen-trust-center.yml
+- type: Compliance
+  url: https://trust.usetaizen.com/
+- type: DomainSecurity
+  url: security/taizen-domain-security.yml
+x-enrichment:
+  date: '2026-07-21'
+  status: minimal
+  artifacts_added: 2
+  pass: local-v1
