@@ -1,40 +1,42 @@
 aid: taizen
 name: Taizen
 description: >-
-  Taizen is a managed agentic AI platform for go-to-market teams that automates
-  win/loss analysis and competitive intelligence. Its Signals agent continuously
-  monitors recorded sales calls (via Gong, Fireflies, tl;dv, and Granola), CRM
-  closed-lost deal data, competitor pricing pages and product changelogs, press
-  releases, and G2 reviews to detect recurring objections and material competitor
-  moves, then auto-generates battlecards, rep-training drills, and AI-roleplay
-  scenarios. Taizen also books and runs AI-led interviews with lost buyers and
-  pushes real-time competitive updates to teams via Slack, with delivery through
-  a Monday-morning weekly digest and instant alerts. Backed by Techstars, the
-  company emphasizes built-in governance and no model-vendor lock-in, and open
-  sources supporting retrieval and GTM tooling on GitHub. This is a customer-facing
-  SaaS product with no public API surface at the time of enrichment.
+  Taizen is a managed agentic AI platform for go-to-market teams that automates win/loss analysis,
+  competitive intelligence and sales-asset production. Its agents continuously read recorded sales
+  calls (Gong, Fireflies, tl;dv, Granola, Genesys Cloud), CRM deal data (Salesforce, HubSpot, Attio,
+  Clari), survey and review signal (Typeform, SurveyMonkey, G2) and existing collateral (Google
+  Drive, SharePoint) to detect recurring objections and competitor moves, then auto-generate
+  battlecards, rep-training drills and AI-roleplay scenarios, and deliver them into Slack. Taizen
+  also books and runs AI-led interviews with lost buyers. Its machine surface is not a REST API but
+  an agent surface: a remote, OAuth-protected MCP server at eu.mcp.usetaizen.com positioned as one
+  connection in place of fifteen-plus individual MCP connectors, and a first-party open-source Claude
+  plugin of thirty GTM Agent Skills. Backed by Techstars, the company emphasizes built-in governance,
+  no model-vendor lock-in, SOC 2 / ISO 27001 / GDPR posture with an EU data region, and open sources
+  supporting retrieval tooling on GitHub.
 url: https://raw.githubusercontent.com/api-evangelist/taizen/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - techstars
-x-tier: stub
-x-tier-reason: portfolio-lead
+x-tier: profile
+x-tier-reason: agent-surface-published
 accessModel:
-  pricing: unknown
-  onboarding: unknown
+  pricing: contact-sales
+  onboarding: signup
   trial: false
   try_now: false
   public: false
-  label: Unknown
-  confidence: low
-  source: []
-  generated: '2026-07-22'
-  method: derived
+  label: Contact Sales
+  confidence: medium
+  source:
+  - https://usetaizen.com/book
+  - plans/taizen-plans-pricing.yml
+  generated: '2026-08-14'
+  method: searched
 image: https://usetaizen.com/assets/taizen.svg
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-21'
+modified: '2026-08-14'
 tags:
 - Company
 - Win-Loss Analysis
@@ -45,7 +47,37 @@ tags:
 - AI Agents
 - Battlecards
 - Sales
-apis: []
+- MCP
+- Agent Skills
+- Conversation Intelligence
+- Product Marketing
+apis:
+- name: Taizen MCP Server
+  description: >-
+    Taizen's remote Model Context Protocol server — the company's only machine-callable surface. Per
+    the provider's own manifest it lets an agent connect once instead of wiring fifteen-plus
+    individual MCP connectors: it indexes the customer's Gong calls, CRM records and documents so any
+    teammate can query every source through one connection, and it schedules recurring AI agents
+    described in natural language, delivering results to Slack, Google Drive or Notion. Protected by
+    OAuth 2.1 with PKCE and dynamic client registration; tools/list is auth-gated. An EU region is
+    live; the US region advertised in the shipped plugin config is not currently serving.
+  humanURL: https://docs.usetaizen.com/
+  baseURL: https://eu.mcp.usetaizen.com/mcp
+  tags:
+  - MCP
+  - AI Agents
+  - GTM
+  properties:
+  - type: MCPServer
+    url: mcp/taizen-mcp.yml
+  - type: Authentication
+    url: authentication/taizen-authentication.yml
+  - type: WellKnown
+    url: well-known/taizen-well-known.yml
+  - type: RateLimits
+    url: rate-limits/taizen-rate-limits.yml
+  - type: Documentation
+    url: https://docs.usetaizen.com/
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -54,22 +86,44 @@ maintainers:
 common:
 - type: Website
   url: https://usetaizen.com/
+- type: Documentation
+  url: https://docs.usetaizen.com/
+- type: GettingStarted
+  url: https://docs.usetaizen.com/docs/getting-started
 - type: SignUp
   url: https://usetaizen.com/book
 - type: TermsOfService
   url: https://usetaizen.com/terms
 - type: PrivacyPolicy
   url: https://usetaizen.com/privacy
+- type: DataProcessingAgreement
+  url: https://usetaizen.com/dpa
 - type: GitHubOrganization
   url: https://github.com/taizen-ai
+- type: LinkedIn
+  url: https://linkedin.com/company/taizenai
 - type: TrustCenter
   url: security/taizen-trust-center.yml
 - type: Compliance
   url: https://trust.usetaizen.com/
 - type: DomainSecurity
   url: security/taizen-domain-security.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: LLMsTxt
+  url: llms/taizen-llms.txt
+- type: Conformance
+  url: conformance/taizen-conformance.yml
+- type: Integrations
+  url: integrations/taizen-integrations.yml
+- type: Packages
+  url: packages/taizen-packages.yml
+- type: Plans
+  url: plans/taizen-plans-pricing.yml
+- type: Lifecycle
+  url: lifecycle/taizen-lifecycle.yml
 x-enrichment:
-  date: '2026-07-21'
-  status: minimal
-  artifacts_added: 2
+  date: '2026-08-14'
+  status: enriched
+  artifacts_added: 44
   pass: local-v1
