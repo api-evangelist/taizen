@@ -1,0 +1,27 @@
+generated: '2026-08-14'
+method: searched
+source: >-
+  https://docs.usetaizen.com/ (all four documented pages, enumerated from
+  https://docs.usetaizen.com/llms.txt), https://github.com/taizen-ai/taizen-claude-plugins, and live
+  response headers from https://eu.mcp.usetaizen.com/mcp
+limit_count: 0
+published: false
+note: >-
+  No rate limits are documented anywhere Taizen publishes. The entire documentation site is four
+  pages (Getting Started plus Gong, Genesys Cloud, Salesforce and Slack integration guides) and none
+  mentions throttling, quotas or retry behaviour. The live MCP endpoint's unauthenticated 401
+  response carries no RateLimit-*, X-RateLimit-* or Retry-After header — only server, date,
+  content-type, transfer-encoding, connection, www-authenticate, cache-control and pragma. An
+  authenticated session might surface limits, but nothing is published, so an agent has no runtime
+  signal to plan against.
+observed_headers: []
+response_headers_documented: []
+status_on_exhaustion: null
+evidence:
+- url: https://eu.mcp.usetaizen.com/mcp
+  status: 401
+  note: 'response headers: server, date, content-type, transfer-encoding, connection, www-authenticate, cache-control, pragma — no rate-limit signalling'
+- url: https://docs.usetaizen.com/llms.txt
+  status: 200
+  note: full doc index; four pages, none about limits
+limits: []

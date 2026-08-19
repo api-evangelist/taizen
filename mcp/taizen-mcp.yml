@@ -1,0 +1,103 @@
+generated: '2026-08-14'
+method: probed
+source: >-
+  https://github.com/taizen-ai/taizen-claude-plugins/blob/main/plugins/taizen-gtm-skills/.mcp.json
+  (declaration) + live probes of https://eu.mcp.usetaizen.com/mcp and
+  https://us.mcp.usetaizen.com/mcp
+name: Taizen MCP Server
+status: published
+ownership_check: >-
+  Every endpoint below is served from usetaizen.com, the company's own apex domain. The declaring
+  manifest (plugins/taizen-gtm-skills/.claude-plugin/plugin.json) names Taizen as author,
+  hello@usetaizen.com as contact and https://usetaizen.com as homepage, and the served OAuth
+  authorization-server metadata uses issuer https://eu.mcp.usetaizen.com. This server belongs to
+  Taizen.
+
+deployment:
+  mode: remote
+  endpoint: https://eu.mcp.usetaizen.com/mcp
+  auth: oauth
+  verified: probed
+  note: >-
+    The EU endpoint is live and correctly gated. An unauthenticated POST of
+    {"jsonrpc":"2.0","id":1,"method":"tools/list"} returns HTTP 401 with body
+    {"detail":"Missing or invalid Authorization header"} and a spec-correct
+    WWW-Authenticate: Bearer resource_metadata="https://eu.mcp.usetaizen.com/.well-known/oauth-protected-resource"
+    header. No stdio/npx package is published, so this is remote-only.
+
+description: >-
+  Taizen's hosted MCP server. Per the provider's own manifest it exists to "connect once instead of
+  15+ individual MCP connectors" — it indexes the customer's Gong calls, CRM records and documents so
+  any teammate can query all sources through one connection, and it schedules recurring AI agents
+  described in natural language. Results are delivered to Slack, Google Drive, Notion or other
+  destinations.
+
+endpoints:
+- region: EU
+  url: https://eu.mcp.usetaizen.com/mcp
+  status: live
+  http_status: 401
+  evidence: >-
+    POST tools/list -> 401 {"detail":"Missing or invalid Authorization header"}; WWW-Authenticate
+    Bearer with resource_metadata pointer. Both RFC 8414 and RFC 9728 metadata documents serve 200.
+  probed: '2026-08-14'
+- region: US
+  url: https://us.mcp.usetaizen.com/mcp
+  status: not-serving
+  http_status: 404
+  evidence: >-
+    Advertised as the DEFAULT url in the provider's .mcp.json, but the host answers the nginx 1.24.0
+    (Ubuntu) stock "Welcome to nginx!" page at / and returns nginx 404 for both GET and POST /mcp.
+    No OAuth metadata is served (all /.well-known/* return the nginx 404). The US region named in the
+    shipped plugin config is not reachable as of this probe.
+  probed: '2026-08-14'
+- region: unspecified
+  url: https://mcp.usetaizen.com/mcp
+  status: dns-nxdomain
+  http_status: 0
+  evidence: >-
+    Declared in plugins/taizen-gtm-skills/.claude-plugin/plugin.json but the hostname does not
+    resolve (NXDOMAIN). This is a stale value in the plugin manifest.
+  probed: '2026-08-14'
+
+authentication:
+  type: oauth2
+  flow: authorization_code
+  pkce: S256
+  dynamic_client_registration: true
+  metadata:
+    authorization_server: https://eu.mcp.usetaizen.com/.well-known/oauth-authorization-server
+    protected_resource: https://eu.mcp.usetaizen.com/.well-known/oauth-protected-resource
+  scopes_published: false
+  note: >-
+    scopes_supported is an EMPTY array in both metadata documents, so the server publishes no scope
+    vocabulary. Access is account-scoped: the provider's install instructions say to sign up at
+    usetaizen.com and authenticate the MCP connection with an existing Taizen account.
+  detail: authentication/taizen-authentication.yml
+
+tools:
+  discovered: false
+  reason: >-
+    tools/list is auth-gated (401). The live tool schemas require an authenticated OAuth
+    introspection against a Taizen account. NO tool list is recorded here — the provider publishes no
+    named tool inventory in the plugin repo, docs, or llms.txt, and inventing one would fabricate an
+    agent surface.
+  capabilities_claimed_by_provider:
+  - Unified retrieval across connected sources (Gong calls, CRM, documents) through one connection
+  - Scheduling recurring AI agents from a natural-language description
+  - Delivery of agent output to Slack, Google Drive, Notion and other destinations
+  capability_source: >-
+    https://github.com/taizen-ai/taizen-claude-plugins/blob/main/plugins/taizen-gtm-skills/.mcp.json
+    and the "Scheduling with Taizen" section of that repo's README.md
+
+client_configuration:
+  transport: http
+  declared_type: http
+  install_path: >-
+    Ships inside the taizen-gtm-skills Claude plugin. `/plugin marketplace add
+    Novadata-Technologies/taizen-claude-plugins` then `/plugin install taizen-gtm-skills@taizen-plugins`;
+    the plugin's .mcp.json registers the taizen server, which the user then authorizes via OAuth.
+
+related:
+  skills: skills/_index.yml
+  well_known: well-known/taizen-well-known.yml

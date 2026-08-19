@@ -1,0 +1,68 @@
+generated: '2026-08-14'
+method: searched
+source: >-
+  npm registry search, pypi.org, crates.io, and the github.com/taizen-ai organization (all queried
+  2026-08-14)
+note: >-
+  Taizen publishes NO client SDK on any package registry — there is nothing to wrap, because it ships
+  no REST or GraphQL API. Its one first-party distributable is the taizen-gtm-skills Claude plugin,
+  distributed through a GitHub-hosted Claude plugin marketplace rather than a package registry, so
+  there is no metadata endpoint to query; the version below is read from the provider's own
+  marketplace.json and plugin.json. NO `SDKs` pointer is emitted for this repo, deliberately: a
+  Claude plugin of GTM prompts is not a client library.
+sdk_count: 0
+package_count: 1
+packages:
+- name: taizen-gtm-skills
+  registry: claude-plugin-marketplace
+  official: true
+  version: '1.0.0'
+  published: null
+  published_note: >-
+    Claude plugin marketplaces expose no dated release metadata. The version string is declared in
+    both .claude-plugin/marketplace.json and plugins/taizen-gtm-skills/.claude-plugin/plugin.json.
+    The nearest dated signal is the repository's last push, 2026-05-25.
+  last_repo_push: '2026-05-25'
+  license: MIT
+  repository: https://github.com/taizen-ai/taizen-claude-plugins
+  install: '/plugin marketplace add Novadata-Technologies/taizen-claude-plugins  →  /plugin install taizen-gtm-skills@taizen-plugins'
+  description: >-
+    30 GTM Agent Skills for sales, sales enablement, product marketing and customer marketing, plus
+    an .mcp.json that registers Taizen's own remote MCP server and 20 third-party MCP endpoints.
+  contents: skills/_index.yml
+registry_checks:
+- registry: npm
+  query: 'https://registry.npmjs.org/-/v1/search?text=taizen'
+  result: no first-party Taizen package
+- registry: pypi
+  query: 'pypi.org/pypi/taizen/json, /taizen-rag/json, /tokenizator/json'
+  result: 404 — none published
+- registry: crates.io
+  query: 'crates.io/api/v1/crates/tokenizator'
+  result: 404 — not published
+non_first_party:
+  note: >-
+    The github.com/taizen-ai organization carries six FORKS of other companies' open-source retrieval
+    projects. Their upstream packages exist on PyPI but belong to LightOn, not Taizen, and are
+    recorded here only so a later run does not mistake them for Taizen SDKs.
+  forks:
+  - repo: taizen-ai/pylate-rs
+    upstream_package: 'pypi:pylate-rs'
+    upstream_owner: 'https://github.com/lightonai/pylate-rs'
+  - repo: taizen-ai/fast-plaid
+    upstream_package: 'pypi:fast-plaid'
+    upstream_owner: 'https://github.com/lightonai/fast-plaid'
+  - repo: taizen-ai/taizen-colbert
+    upstream_package: null
+  - repo: taizen-ai/taizen-pylate
+    upstream_package: null
+  - repo: taizen-ai/public-taizen-rag
+    upstream_package: null
+  - repo: taizen-ai/next-plaid
+    upstream_package: null
+  first_party_unpublished:
+  - repo: taizen-ai/tokenizator
+    language: Rust
+    note: >-
+      Not a fork and not published to crates.io (404) or PyPI (404). A lightweight Rust document
+      tokenizer, source-only, last pushed 2025-09-15.

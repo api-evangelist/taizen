@@ -1,0 +1,24 @@
+generated: '2026-08-14'
+method: searched
+source: 'https://usetaizen.com/ (footer + nav), https://usetaizen.com/pricing, https://usetaizen.com/book'
+plan_count: 0
+published: false
+model: contact-sales
+note: >-
+  Taizen publishes no pricing at all. https://usetaizen.com/pricing returns HTTP 404, there is no
+  pricing link anywhere in the site navigation or footer (Product / Agents / AI Roleplay / Win-Loss
+  Interviews / Home / Book a demo / Trust and Security / Privacy / Terms / DPA), and no plans,
+  tiers, quotas or overage terms are stated on any public page. The only commercial path is
+  https://usetaizen.com/book (HTTP 200), a "Book a demo" form, plus https://usetaizen.com/demo
+  (HTTP 200). The MCP server's own install instructions likewise say only "create an account at
+  usetaizen.com".
+evidence:
+- url: https://usetaizen.com/pricing
+  status: 404
+- url: https://usetaizen.com/book
+  status: 200
+- url: https://usetaizen.com/demo
+  status: 200
+- url: https://usetaizen.com/
+  status: 200
+plans: []

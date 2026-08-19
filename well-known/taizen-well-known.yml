@@ -1,0 +1,142 @@
+generated: '2026-08-14'
+method: probed
+source: live HTTP probes of every Taizen host known to this repo
+checked: '2026-08-14'
+summary: >-
+  Two real /.well-known documents are served, both by the EU MCP host: RFC 8414 OAuth
+  authorization-server metadata and RFC 9728 OAuth protected-resource metadata. Every other path on
+  every other host returns 404 (or 403 on the third-party-hosted trust centre). usetaizen.com and
+  docs.usetaizen.com answer their 404s with a full Next.js HTML shell, which is NOT a document — those
+  rows are recorded as misses. No security.txt, no api-catalog, no ai-plugin.json, no agent card.
+hosts:
+- host: eu.mcp.usetaizen.com
+  role: MCP server (EU region)
+  paths:
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    content_type: application/json
+    document: true
+    file: well-known/taizen-eu-mcp-oauth-authorization-server.json
+  - path: /.well-known/oauth-protected-resource
+    status: 200
+    content_type: application/json
+    document: true
+    file: well-known/taizen-eu-mcp-oauth-protected-resource.json
+  - path: /.well-known/oauth-protected-resource/mcp
+    status: 404
+    document: false
+  - path: /.well-known/openid-configuration
+    status: 404
+    document: false
+- host: us.mcp.usetaizen.com
+  role: MCP server (US region, advertised but not serving)
+  paths:
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+    document: false
+    note: nginx 1.24.0 stock 404
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+    document: false
+  - path: /.well-known/oauth-protected-resource/mcp
+    status: 404
+    document: false
+  - path: /.well-known/openid-configuration
+    status: 404
+    document: false
+- host: usetaizen.com
+  role: marketing site
+  paths:
+  - path: /.well-known/security.txt
+    status: 404
+    document: false
+  - path: /.well-known/openid-configuration
+    status: 404
+    document: false
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+    document: false
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+    document: false
+  - path: /.well-known/api-catalog
+    status: 404
+    document: false
+  - path: /.well-known/ai-plugin.json
+    status: 404
+    document: false
+  - path: /.well-known/agent-card.json
+    status: 404
+    document: false
+  - path: /.well-known/agent.json
+    status: 404
+    document: false
+- host: docs.usetaizen.com
+  role: documentation site
+  paths:
+  - path: /.well-known/security.txt
+    status: 404
+    document: false
+  - path: /.well-known/openid-configuration
+    status: 404
+    document: false
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+    document: false
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+    document: false
+  - path: /.well-known/api-catalog
+    status: 404
+    document: false
+  - path: /.well-known/ai-plugin.json
+    status: 404
+    document: false
+  - path: /.well-known/agent-card.json
+    status: 404
+    document: false
+  - path: /.well-known/agent.json
+    status: 404
+    document: false
+- host: api.usetaizen.com
+  role: >-
+    responds to / with the literal string "Hello World!" (12 bytes) and 404s every other path probed;
+    no API is exposed here
+  paths:
+  - path: /.well-known/security.txt
+    status: 404
+    document: false
+  - path: /.well-known/openid-configuration
+    status: 404
+    document: false
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+    document: false
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+    document: false
+  - path: /.well-known/api-catalog
+    status: 404
+    document: false
+  - path: /.well-known/ai-plugin.json
+    status: 404
+    document: false
+  - path: /.well-known/agent-card.json
+    status: 404
+    document: false
+  - path: /.well-known/agent.json
+    status: 404
+    document: false
+- host: trust.usetaizen.com
+  role: third-party-hosted trust centre
+  paths:
+  - path: /.well-known/security.txt
+    status: 403
+    document: false
+    note: every /.well-known/* path returns an identical 403 from the hosting platform
+  - path: /.well-known/agent-card.json
+    status: 403
+    document: false
+documents_found: 2
+agent_card_found: false
+security_txt_found: false

@@ -1,0 +1,131 @@
+generated: '2026-08-14'
+method: searched
+source: 'https://usetaizen.com/integrations and https://docs.usetaizen.com/docs (llms.txt index)'
+note: >-
+  DIRECTION MATTERS. Everything below is INBOUND — these are third-party APIs that Taizen CONSUMES on
+  the customer's behalf, and the credentials/scopes listed are what Taizen REQUESTS FROM the
+  customer's tools. Taizen issues none of them. This file is deliberately not wired as an
+  authentication or scopes artifact, because crediting Taizen with publishing an OAuth scope
+  vocabulary it merely consumes would be false.
+integration_count: 17
+documented_count: 4
+documented:
+- name: Gong
+  slug: gong
+  docs: https://docs.usetaizen.com/docs/integrations/gong
+  auth: api-key
+  credentials:
+  - Access Key
+  - Secret Key
+  setup: Gong Admin Center -> API -> API Keys -> Get API Key
+  required_scopes:
+  - 'api:calls:read'
+  - 'api:calls:read:extensive'
+  - 'api:calls:read:media-url'
+  - 'api:calls:read:transcript'
+  purpose: Import calls and transcripts
+- name: Genesys Cloud
+  slug: genesys-cloud
+  docs: https://docs.usetaizen.com/docs/integrations/genesys-cloud
+  auth: oauth
+  access: read-only
+  required_scopes:
+  - 'analytics:readonly'
+  - 'conversations:readonly'
+  - 'recordings:readonly'
+  - 'speech-and-text-analytics:readonly'
+  - 'users:readonly'
+  purpose: Import calls, recordings, transcripts and speech/text analytics
+  caveat: >-
+    Genesys Cloud requires both OAuth scopes AND user permissions; a connection can succeed while
+    sync silently fails if the connecting user lacks conversation/recording/transcript permissions.
+- name: Salesforce
+  slug: salesforce
+  docs: https://docs.usetaizen.com/docs/integrations/salesforce
+  auth: oauth
+  access: read-write
+  required_scopes:
+  - openid
+  - api
+  - refresh_token
+  - offline_access
+  objects:
+  - Opportunities
+  - Contacts
+  - Leads
+  - Accounts
+  - Users
+  - Notes
+  - Engagements
+  - Engagement types
+  - Stages
+  - Tasks
+  purpose: Deal stage, account context and stakeholder data
+- name: Slack
+  slug: slack
+  docs: https://docs.usetaizen.com/docs/integrations/slack
+  auth: oauth
+  app: Taizen Bot
+  required_scopes:
+  - 'app_mentions:read'
+  - 'channels:history'
+  - 'channels:read'
+  - 'chat:write'
+  - commands
+  - 'groups:history'
+  - 'groups:read'
+  - 'im:history'
+  - 'im:read'
+  - 'mpim:history'
+  - 'mpim:read'
+  - 'users:read'
+  - 'users:read.email'
+  - 'team:read'
+  - 'usergroups:read'
+  - 'reactions:read'
+  - 'reactions:write'
+  - 'files:read'
+  - 'files:write'
+  - 'links:read'
+  - 'links:write'
+  purpose: Deliver finished assets to reps and post competitive updates
+  caveat: Some workspaces restrict app installs to admins, who must approve the Taizen Bot.
+listed_only:
+- name: Typeform
+  purpose: Ingests customer feedback and survey responses
+- name: HubSpot
+  purpose: Deal activity, contact properties, engagement data
+- name: Outreach
+  purpose: Outbound sequences and reply signals
+- name: SalesLoft
+  purpose: Cadence activity and prospect engagement
+- name: Gainsight
+  purpose: Customer health scores and usage data
+- name: Attio
+  purpose: Relationship context and deal history
+- name: G2
+  purpose: Reviews and competitive ratings
+- name: SurveyMonkey
+  purpose: NPS responses and survey data
+- name: Fireflies
+  purpose: Meeting transcription and analysis
+- name: Clari
+  purpose: Forecast data and deal health signals
+- name: 'tl;dv'
+  purpose: Recorded meeting key moments and objections
+- name: Granola
+  purpose: Meeting notes and action items
+- name: Gmail
+  purpose: Email threads for buyer questions and objections
+- name: Google Drive
+  purpose: Existing collateral, templates and approved content
+- name: SharePoint
+  purpose: Document library for approved content and brand assets
+mcp_connector_note: >-
+  The provider's shipped plugin config
+  (https://github.com/taizen-ai/taizen-claude-plugins/blob/main/plugins/taizen-gtm-skills/.mcp.json)
+  additionally registers 20 third-party MCP endpoints alongside Taizen's own, including Salesforce,
+  HubSpot, Gong, Slack, Google Drive, Notion, Linear, GitHub, Glean, Amplitude, Mixpanel, Intercom,
+  Zendesk, Outreach, Salesloft, LinkedIn, Clearbit, ZoomInfo, G2 and 6sense. Those are other
+  companies' endpoints, recorded here only as evidence of Taizen's stated "connect once instead of
+  15+ individual MCP connectors" positioning.

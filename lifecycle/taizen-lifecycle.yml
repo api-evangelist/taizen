@@ -1,0 +1,45 @@
+generated: '2026-08-14'
+method: probed
+source: >-
+  Live probes of usetaizen.com, status.usetaizen.com, docs.usetaizen.com and the GitHub organization
+  github.com/taizen-ai (2026-08-14)
+note: >-
+  Recorded as an honest set of absences. Taizen publishes no versioning policy, no deprecation
+  policy, no Sunset/Deprecation header contract, no SLA and no status page. This matters more than
+  usual here: the only machine surface is a remote MCP server, and MCP clients have no way to pin a
+  version or be warned of a breaking tool change.
+versioning:
+  policy_published: false
+  scheme: null
+  evidence: 'No versioning statement on docs.usetaizen.com (four pages total) or in the plugin repo.'
+deprecation:
+  policy_published: false
+  sunset_header: false
+  deprecation_header: false
+  rfc8594: false
+  evidence: 'No deprecation or sunset policy published; no such headers observed on any probed response.'
+status_page:
+  published: false
+  evidence:
+  - url: https://status.usetaizen.com/
+    status: 0
+    note: DNS NXDOMAIN — the host does not resolve
+  - url: https://usetaizen.com/status
+    status: 404
+sla:
+  published: false
+  evidence: 'No SLA document; https://usetaizen.com/dpa (200) is a data processing addendum, not an SLA.'
+changelog:
+  published: false
+  evidence:
+  - url: https://usetaizen.com/changelog
+    status: 404
+  - url: https://usetaizen.com/blog
+    status: 404
+regional_deployment:
+  note: >-
+    Two MCP regions are advertised in the provider's shipped config — us.mcp.usetaizen.com (declared
+    as the default) and eu.mcp.usetaizen.com. Only the EU region is live; the US host serves the stock
+    nginx welcome page and 404s /mcp. A third hostname, mcp.usetaizen.com, is named in plugin.json and
+    does not resolve at all. See mcp/taizen-mcp.yml for the probe record.
+deprecated_operations: []

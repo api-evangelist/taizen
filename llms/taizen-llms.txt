@@ -1,0 +1,8 @@
+# Documentation
+
+- [Getting Started](/docs/getting-started): Welcome to Taizen documentation
+- [Getting Started](/docs): Welcome to Taizen documentation
+- [Genesys Cloud](/docs/integrations/genesys-cloud): Connect Genesys Cloud to Taizen to import calls and transcripts
+- [Gong](/docs/integrations/gong): Connect Gong to Taizen to import calls and transcripts
+- [Salesforce](/docs/integrations/salesforce): Connect Salesforce to Taizen
+- [Slack](/docs/integrations/slack): Connect Slack to Taizen

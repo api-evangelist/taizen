@@ -1,0 +1,115 @@
+generated: '2026-08-14'
+method: probed
+source: >-
+  Live probes of https://eu.mcp.usetaizen.com (2026-08-14), the provider's Claude plugin manifests at
+  https://github.com/taizen-ai/taizen-claude-plugins, https://docs.usetaizen.com/llms.txt, and
+  https://trust.usetaizen.com/
+note: >-
+  Taizen ships no REST or GraphQL contract, so every REST-shaped standard below is asserted as
+  not-applicable rather than failed. What it does ship — a remote MCP server and a Claude plugin of
+  Agent Skills — conforms to the agent-layer standards cleanly.
+standards:
+- id: mcp
+  name: Model Context Protocol
+  conforms: true
+  evidence: >-
+    Remote HTTP MCP server at https://eu.mcp.usetaizen.com/mcp. Declared with "type":"http" in the
+    provider's own plugins/taizen-gtm-skills/.mcp.json. Responds to JSON-RPC POST with a spec-shaped
+    401 challenge rather than a transport error.
+- id: mcp-authorization
+  name: MCP Authorization (OAuth 2.1 profile)
+  conforms: true
+  evidence: >-
+    Serves BOTH required discovery documents and issues the WWW-Authenticate challenge with a
+    resource_metadata parameter, which is the exact handshake the MCP authorization spec requires of a
+    protected MCP resource server.
+- id: oauth2
+  name: OAuth 2.0 / 2.1 authorization code
+  conforms: true
+  evidence: >-
+    authorization_endpoint + token_endpoint + response_types_supported ["code"] +
+    grant_types_supported ["authorization_code"] served at
+    https://eu.mcp.usetaizen.com/.well-known/oauth-authorization-server (200).
+- id: rfc8414
+  name: OAuth 2.0 Authorization Server Metadata
+  conforms: true
+  evidence: 'https://eu.mcp.usetaizen.com/.well-known/oauth-authorization-server -> 200 application/json'
+- id: rfc9728
+  name: OAuth 2.0 Protected Resource Metadata
+  conforms: true
+  evidence: 'https://eu.mcp.usetaizen.com/.well-known/oauth-protected-resource -> 200 application/json'
+- id: rfc7636
+  name: PKCE
+  conforms: true
+  evidence: 'code_challenge_methods_supported: ["S256"]'
+- id: rfc7591
+  name: OAuth 2.0 Dynamic Client Registration
+  conforms: true
+  evidence: 'registration_endpoint: https://eu.mcp.usetaizen.com/oauth/register'
+- id: rfc6750
+  name: OAuth 2.0 Bearer Token Usage
+  conforms: true
+  evidence: >-
+    bearer_methods_supported ["header"]; unauthenticated call returns 401 with a WWW-Authenticate:
+    Bearer challenge.
+- id: agent-skills
+  name: Agent Skills (SKILL.md frontmatter)
+  conforms: true
+  evidence: >-
+    30 SKILL.md files with valid name/description frontmatter, packaged as a Claude plugin marketplace
+    at https://github.com/taizen-ai/taizen-claude-plugins. Saved verbatim under skills/.
+- id: llmstxt
+  name: llms.txt
+  conforms: true
+  evidence: 'https://docs.usetaizen.com/llms.txt -> 200 text/plain, valid llms.txt link-list format'
+- id: oidc
+  name: OpenID Connect Discovery
+  conforms: false
+  evidence: '/.well-known/openid-configuration returns 404 on all five Taizen hosts probed'
+- id: a2a
+  name: A2A Agent Card
+  conforms: false
+  evidence: >-
+    /.well-known/agent-card.json and /.well-known/agent.json return 404 on usetaizen.com,
+    docs.usetaizen.com and api.usetaizen.com, and 403 on trust.usetaizen.com. No agent card is served.
+- id: openapi
+  name: OpenAPI
+  conforms: false
+  applicable: false
+  evidence: >-
+    No OpenAPI/Swagger document at any of openapi.json, openapi.yaml, swagger.json, /v1/openapi.json,
+    /api-docs, /docs or /redoc on api.usetaizen.com, usetaizen.com or docs.usetaizen.com. Taizen
+    publishes no REST API.
+- id: rfc9457
+  name: Problem Details for HTTP APIs
+  conforms: false
+  applicable: false
+  evidence: >-
+    No public REST surface to carry problem+json. The MCP 401 body is a bare
+    {"detail":"..."} object with content-type application/json, not application/problem+json.
+- id: idempotency
+  name: Idempotency keys
+  conforms: false
+  applicable: false
+  evidence: No public REST surface; the provider documents no idempotency mechanism.
+- id: pagination
+  name: Documented pagination
+  conforms: false
+  applicable: false
+  evidence: No public REST surface.
+compliance_programs:
+- id: soc2
+  name: SOC 2
+  conforms: true
+  evidence: 'Named on https://trust.usetaizen.com/ and the SOC 2 badge on https://usetaizen.com/'
+- id: iso27001
+  name: ISO/IEC 27001
+  conforms: true
+  evidence: 'Named on https://trust.usetaizen.com/ and the ISO badge on https://usetaizen.com/'
+- id: gdpr
+  name: GDPR
+  conforms: true
+  evidence: >-
+    GDPR badge on https://usetaizen.com/, a published Data Processing Addendum at
+    https://usetaizen.com/dpa (HTTP 200), and a dedicated EU MCP region
+    (https://eu.mcp.usetaizen.com) for data residency.

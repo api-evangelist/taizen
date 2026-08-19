@@ -1,0 +1,66 @@
+generated: '2026-08-14'
+method: probed
+source: >-
+  https://eu.mcp.usetaizen.com/.well-known/oauth-authorization-server and
+  https://eu.mcp.usetaizen.com/.well-known/oauth-protected-resource (both HTTP 200, probed
+  2026-08-14); 401 challenge headers on POST https://eu.mcp.usetaizen.com/mcp
+note: >-
+  DERIVED FROM SERVED METADATA, NOT FROM AN OPENAPI. Taizen publishes no REST contract, so there are
+  no securitySchemes to read. Its only authenticated machine surface is the remote MCP server, which
+  implements the MCP OAuth profile properly: RFC 8414 authorization-server metadata, RFC 9728
+  protected-resource metadata, and an RFC 6750 WWW-Authenticate challenge that points a client at the
+  resource metadata document.
+applies_to:
+  api: Taizen MCP Server
+  resource: https://eu.mcp.usetaizen.com
+schemes:
+- id: taizen-mcp-oauth2
+  type: oauth2
+  flows:
+    authorizationCode:
+      authorizationUrl: https://eu.mcp.usetaizen.com/oauth/authorize
+      tokenUrl: https://eu.mcp.usetaizen.com/oauth/token
+      scopes: {}
+  issuer: https://eu.mcp.usetaizen.com
+  registration_endpoint: https://eu.mcp.usetaizen.com/oauth/register
+  dynamic_client_registration: true
+  response_types_supported:
+  - code
+  grant_types_supported:
+  - authorization_code
+  code_challenge_methods_supported:
+  - S256
+  token_endpoint_auth_methods_supported:
+  - none
+  bearer_methods_supported:
+  - header
+  scopes_supported: []
+  public_client: true
+  pkce_required: true
+  note: >-
+    token_endpoint_auth_methods_supported is ["none"], i.e. public clients only — there is no
+    confidential-client credential, and PKCE S256 is the sole proof of possession at the token
+    endpoint. This is the expected shape for an MCP server talking to desktop/CLI agent clients.
+challenge:
+  status: 401
+  body: '{"detail":"Missing or invalid Authorization header"}'
+  www_authenticate: >-
+    Bearer resource_metadata="https://eu.mcp.usetaizen.com/.well-known/oauth-protected-resource"
+  cache_control: no-store
+scopes_published: false
+scopes_note: >-
+  scopes_supported is an empty array in BOTH metadata documents, so a client cannot request or reason
+  about least-privilege access — authorization is all-or-nothing against the connected Taizen
+  account. No scopes/ artifact is written for this repo because the provider publishes no scope
+  vocabulary of its own.
+consumed_third_party_auth:
+  note: >-
+    Separately from the above, Taizen's docs describe the credentials Taizen ITSELF requests FROM the
+    customer's tools. These are inbound integration credentials, not scopes Taizen issues. Captured
+    in integrations/taizen-integrations.yml.
+  docs: https://docs.usetaizen.com/docs
+openid_connect:
+  supported: false
+  evidence: >-
+    https://eu.mcp.usetaizen.com/.well-known/openid-configuration returns 404, as does the same path
+    on usetaizen.com, docs.usetaizen.com, api.usetaizen.com and us.mcp.usetaizen.com.

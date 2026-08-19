@@ -1,0 +1,203 @@
+generated: '2026-08-14'
+method: searched
+source: https://github.com/taizen-ai/taizen-claude-plugins
+note: Agent Skills published by Taizen itself, not authored by API Evangelist. They ship as the `taizen-gtm-skills`
+  plugin in the `taizen-plugins` Claude plugin marketplace (MIT licensed, repo taizen-ai/taizen-claude-plugins,
+  plugin.json author hello@usetaizen.com, homepage https://usetaizen.com). Each SKILL.md is saved VERBATIM.
+  These skills orchestrate the user's own GTM stack through MCP connectors; they are not clients of a
+  Taizen REST API, because Taizen publishes none. Taizen's own agent surface is its remote MCP server
+  (see mcp/taizen-mcp.yml).
+package:
+  marketplace: taizen-plugins
+  plugin: taizen-gtm-skills
+  version: 1.0.0
+  license: MIT
+  install: /plugin marketplace add Novadata-Technologies/taizen-claude-plugins  →  /plugin install taizen-gtm-skills@taizen-plugins
+  repository: https://github.com/taizen-ai/taizen-claude-plugins
+  repository_declared_in_plugin_json: https://github.com/Novadata-Technologies/taizen-claude-plugins
+  hosts:
+  - Claude Code
+  - Claude Desktop / Cowork
+  - Claude Plugins Marketplace
+skill_count: 30
+skills:
+- name: account-lifecycle
+  file: skills/taizen-account-lifecycle.md
+  description: Supports post-close account management with structured account plans, renewal playbooks,
+    and expansion strategies. Use for account planning and growth.
+  user_invocable: true
+  source: https://github.com/taizen-ai/taizen-claude-plugins/blob/main/plugins/taizen-gtm-skills/skills/account-lifecycle/SKILL.md
+- name: account-research
+  file: skills/taizen-account-research.md
+  description: Researches accounts, preps meeting briefs, maps buying committees, and runs health reviews.
+    Use for account research, discovery prep, stakeholder mapping, or account health assessments.
+  user_invocable: true
+  source: https://github.com/taizen-ai/taizen-claude-plugins/blob/main/plugins/taizen-gtm-skills/skills/account-research/SKILL.md
+- name: brand-voice
+  file: skills/taizen-brand-voice.md
+  description: Creates content aligned with brand voice guidelines. Ensures consistency in tone, language,
+    and personality across all communications.
+  user_invocable: true
+  source: https://github.com/taizen-ai/taizen-claude-plugins/blob/main/plugins/taizen-gtm-skills/skills/brand-voice/SKILL.md
+- name: buyer-profiles
+  file: skills/taizen-buyer-profiles.md
+  description: Buyer persona profiles with priorities, language preferences, and objection patterns. Helps
+    adapt messaging for different stakeholders.
+  user_invocable: true
+  source: https://github.com/taizen-ai/taizen-claude-plugins/blob/main/plugins/taizen-gtm-skills/skills/buyer-profiles/SKILL.md
+- name: case-study-builder
+  file: skills/taizen-case-study-builder.md
+  description: Creates compelling customer case studies from interviews, data, and research. Use for customer
+    story development, reference programs, or marketing content.
+  user_invocable: true
+  source: https://github.com/taizen-ai/taizen-claude-plugins/blob/main/plugins/taizen-gtm-skills/skills/case-study-builder/SKILL.md
+- name: community-signals
+  file: skills/taizen-community-signals.md
+  description: Monitors and summarizes community feedback, social signals, and customer sentiment. Use
+    for intelligence gathering and trend spotting.
+  user_invocable: true
+  source: https://github.com/taizen-ai/taizen-claude-plugins/blob/main/plugins/taizen-gtm-skills/skills/community-signals/SKILL.md
+- name: competitive-intelligence
+  file: skills/taizen-competitive-intelligence.md
+  description: Produces competitor analysis, battlecards, comparison pages, and competitive positioning.
+    Use for competitive research, sales enablement, or marketing content.
+  user_invocable: true
+  source: https://github.com/taizen-ai/taizen-claude-plugins/blob/main/plugins/taizen-gtm-skills/skills/competitive-intelligence/SKILL.md
+- name: content-reviewer
+  file: skills/taizen-content-reviewer.md
+  description: Reviews content for quality, clarity, brand alignment, and effectiveness. Use for content
+    QA before publishing.
+  user_invocable: true
+  source: https://github.com/taizen-ai/taizen-claude-plugins/blob/main/plugins/taizen-gtm-skills/skills/content-reviewer/SKILL.md
+- name: copywriting
+  file: skills/taizen-copywriting.md
+  description: Writes marketing copy for landing pages, ads, CTAs, and promotional content. Use for conversion-focused
+    copy that drives action.
+  user_invocable: true
+  source: https://github.com/taizen-ai/taizen-claude-plugins/blob/main/plugins/taizen-gtm-skills/skills/copywriting/SKILL.md
+- name: customer-advocacy
+  file: skills/taizen-customer-advocacy.md
+  description: Manages customer reference programs, testimonial collection, reviews, and advocacy initiatives.
+    Use for building proof points and customer evidence.
+  user_invocable: true
+  source: https://github.com/taizen-ai/taizen-claude-plugins/blob/main/plugins/taizen-gtm-skills/skills/customer-advocacy/SKILL.md
+- name: customer-research
+  file: skills/taizen-customer-research.md
+  description: Develops ICP definitions, buyer personas, jobs-to-be-done, voice of customer insights,
+    and win/loss patterns. Use for audience research and customer understanding.
+  user_invocable: true
+  source: https://github.com/taizen-ai/taizen-claude-plugins/blob/main/plugins/taizen-gtm-skills/skills/customer-research/SKILL.md
+- name: discovery-prep
+  file: skills/taizen-discovery-prep.md
+  description: Produces unified discovery prep with tailored questions, anticipated objections, and recommended
+    demo flow. Use before discovery calls or demos.
+  user_invocable: true
+  source: https://github.com/taizen-ai/taizen-claude-plugins/blob/main/plugins/taizen-gtm-skills/skills/discovery-prep/SKILL.md
+- name: email-sequences
+  file: skills/taizen-email-sequences.md
+  description: Designs email nurture sequences, drip campaigns, and automated email flows. Use for lead
+    nurturing, onboarding, and lifecycle marketing.
+  user_invocable: true
+  source: https://github.com/taizen-ai/taizen-claude-plugins/blob/main/plugins/taizen-gtm-skills/skills/email-sequences/SKILL.md
+- name: executive-briefings
+  file: skills/taizen-executive-briefings.md
+  description: Preparation materials for C-level meetings, executive events, and advisory boards. Includes
+    profiles, talking points, and strategic framing.
+  user_invocable: true
+  source: https://github.com/taizen-ai/taizen-claude-plugins/blob/main/plugins/taizen-gtm-skills/skills/executive-briefings/SKILL.md
+- name: feedback-collector
+  file: skills/taizen-feedback-collector.md
+  description: Captures skill corrections and suggestions for continuous improvement. Runs silently to
+    log issues without interrupting workflow.
+  user_invocable: false
+  source: https://github.com/taizen-ai/taizen-claude-plugins/blob/main/plugins/taizen-gtm-skills/skills/feedback-collector/SKILL.md
+- name: go-to-market
+  file: skills/taizen-go-to-market.md
+  description: Plans product launches, campaigns, cross-functional GTM execution, and enablement. Use
+    for launch planning or campaign development.
+  user_invocable: true
+  source: https://github.com/taizen-ai/taizen-claude-plugins/blob/main/plugins/taizen-gtm-skills/skills/go-to-market/SKILL.md
+- name: gtm-messaging
+  file: skills/taizen-gtm-messaging.md
+  description: Core messaging guidelines and value framing principles for consistent GTM communications.
+    Reference this for any customer-facing content.
+  user_invocable: true
+  source: https://github.com/taizen-ai/taizen-claude-plugins/blob/main/plugins/taizen-gtm-skills/skills/gtm-messaging/SKILL.md
+- name: industry-insights
+  file: skills/taizen-industry-insights.md
+  description: Vertical market intelligence with industry trends, challenges, regulations, and talking
+    points. Use for industry-specific conversations.
+  user_invocable: true
+  source: https://github.com/taizen-ai/taizen-claude-plugins/blob/main/plugins/taizen-gtm-skills/skills/industry-insights/SKILL.md
+- name: messaging-positioning
+  file: skills/taizen-messaging-positioning.md
+  description: Builds positioning statements, value propositions, message houses, and persona-specific
+    messaging. Use for positioning development or messaging refresh.
+  user_invocable: true
+  source: https://github.com/taizen-ai/taizen-claude-plugins/blob/main/plugins/taizen-gtm-skills/skills/messaging-positioning/SKILL.md
+- name: newsletter-writer
+  file: skills/taizen-newsletter-writer.md
+  description: Creates customer newsletters, product updates, and email communications. Use for ongoing
+    customer engagement and retention marketing.
+  user_invocable: true
+  source: https://github.com/taizen-ai/taizen-claude-plugins/blob/main/plugins/taizen-gtm-skills/skills/newsletter-writer/SKILL.md
+- name: objections-prep
+  file: skills/taizen-objections-prep.md
+  description: Produces prep output for anticipated objections with response strategies and reframing
+    techniques. Use when preparing for negotiations or objection-heavy conversations.
+  user_invocable: true
+  source: https://github.com/taizen-ai/taizen-claude-plugins/blob/main/plugins/taizen-gtm-skills/skills/objections-prep/SKILL.md
+- name: outreach-templates
+  file: skills/taizen-outreach-templates.md
+  description: Generates personalized outreach sequences for cold, warm, event-based, re-engagement, and
+    executive contexts. Use when creating prospecting emails or sequences.
+  user_invocable: true
+  source: https://github.com/taizen-ai/taizen-claude-plugins/blob/main/plugins/taizen-gtm-skills/skills/outreach-templates/SKILL.md
+- name: pricing-packaging
+  file: skills/taizen-pricing-packaging.md
+  description: Recommends pricing models, tier structures, value metrics, and pricing page guidance. Use
+    for pricing strategy or packaging decisions.
+  user_invocable: true
+  source: https://github.com/taizen-ai/taizen-claude-plugins/blob/main/plugins/taizen-gtm-skills/skills/pricing-packaging/SKILL.md
+- name: product-context
+  file: skills/taizen-product-context.md
+  description: Foundational product marketing context that other skills reference. Establishes positioning,
+    audience, messaging, and voice. Claude auto-references this when running GTM skills.
+  user_invocable: false
+  source: https://github.com/taizen-ai/taizen-claude-plugins/blob/main/plugins/taizen-gtm-skills/skills/product-context/SKILL.md
+- name: roi-builder
+  file: skills/taizen-roi-builder.md
+  description: Creates ROI models, business cases, and value calculations. Also supports RFP/proposal
+    responses with evidence-based justifications.
+  user_invocable: true
+  source: https://github.com/taizen-ai/taizen-claude-plugins/blob/main/plugins/taizen-gtm-skills/skills/roi-builder/SKILL.md
+- name: sales-coaching
+  file: skills/taizen-sales-coaching.md
+  description: Deal reviews, win/loss analysis, call coaching, and rep development frameworks. Helps identify
+    patterns and improve sales execution.
+  user_invocable: true
+  source: https://github.com/taizen-ai/taizen-claude-plugins/blob/main/plugins/taizen-gtm-skills/skills/sales-coaching/SKILL.md
+- name: sales-playbook
+  file: skills/taizen-sales-playbook.md
+  description: Sales methodology framework covering deal stages, qualification criteria, and strategic
+    selling approaches. Use for deal strategy and sales process guidance.
+  user_invocable: true
+  source: https://github.com/taizen-ai/taizen-claude-plugins/blob/main/plugins/taizen-gtm-skills/skills/sales-playbook/SKILL.md
+- name: seo-content
+  file: skills/taizen-seo-content.md
+  description: Creates SEO-optimized articles, blog posts, and web content. Use for organic content marketing
+    and search visibility.
+  user_invocable: true
+  source: https://github.com/taizen-ai/taizen-claude-plugins/blob/main/plugins/taizen-gtm-skills/skills/seo-content/SKILL.md
+- name: session-context
+  file: skills/taizen-session-context.md
+  description: Establishes user role and team context at session start to personalize outputs. Runs silently
+    without producing visible output.
+  user_invocable: false
+  source: https://github.com/taizen-ai/taizen-claude-plugins/blob/main/plugins/taizen-gtm-skills/skills/session-context/SKILL.md
+- name: social-content
+  file: skills/taizen-social-content.md
+  description: Creates social media posts, content calendars, and platform-specific content. Use for social
+    media marketing and brand presence.
+  user_invocable: true
+  source: https://github.com/taizen-ai/taizen-claude-plugins/blob/main/plugins/taizen-gtm-skills/skills/social-content/SKILL.md
