@@ -43,6 +43,20 @@ tags:
 - Competitive Intelligence
 - Sales Enablement
 - Revenue Intelligence
+- Go-To-Market
+- AI Agents
+- Battlecards
+- Sales
+- MCP
+- Agent Skills
+- Conversation Intelligence
+- Product Marketing
+tags_raw:
+- Company
+- Win-Loss Analysis
+- Competitive Intelligence
+- Sales Enablement
+- Revenue Intelligence
 - GTM
 - AI Agents
 - Battlecards
@@ -64,6 +78,10 @@ apis:
   humanURL: https://docs.usetaizen.com/
   baseURL: https://eu.mcp.usetaizen.com/mcp
   tags:
+  - MCP
+  - AI Agents
+  - Go-To-Market
+  tags_raw:
   - MCP
   - AI Agents
   - GTM
