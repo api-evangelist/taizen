@@ -83,3 +83,17 @@ client_configuration:
 related:
   skills: skills/_index.yml
   well_known: well-known/taizen-well-known.yml
+rfc9728:
+  endpoint: https://eu.mcp.usetaizen.com/mcp
+  metadata_url: https://eu.mcp.usetaizen.com/.well-known/oauth-protected-resource
+  discovered_via: WWW-Authenticate resource_metadata on an anonymous POST initialize
+  fetched: '2026-09-25'
+  http_status: 200
+  content_type: application/json
+  document:
+    resource: https://eu.mcp.usetaizen.com
+    authorization_servers:
+    - https://eu.mcp.usetaizen.com
+    scopes_supported: []
+    bearer_methods_supported:
+    - header
